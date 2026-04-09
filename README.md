@@ -16,7 +16,18 @@ Unlike standard sliders that have a "start" and "end," this slider functions lik
 
 -----
 
-## 🛠️ Quick Start
+## Installation (shadcn/ui)
+Add this component to your project with a single command:
+
+```bash
+npx shadcn@latest add https://damflancoz.github.io/infinite-slider/registry.json
+```
+
+-----
+
+## Manual Setup
+
+If you prefer to manage the code yourself, follow these steps:
 
 ### 1\. Install Dependencies
 
@@ -28,7 +39,7 @@ npm install clsx tailwind-merge
 
 ### 2\. Copy the Component
 
-Most users prefer keeping the logic and UI together. Save this as `infinite-slider.tsx`:
+Save this as `src/components/ui/infinite-slider.tsx`:
 
 \<details\>
 \<summary\>\<b\>Click to expand the full code block\</b\>\</summary\>
