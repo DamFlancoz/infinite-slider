@@ -4,6 +4,8 @@ Slider for React. Designed for financial apps and complex inputs where you need 
 
 Unlike standard sliders that have a "start" and "end," this slider functions like a gas pedal. The further you pull it from the center, the faster the value changes.
 
+[**Live Demo →**](https://damflancoz.github.io/infinite-slider/)
+
 ### Why use this?
 
   * **Infinite Range:** You aren't limited by the width of the screen.
