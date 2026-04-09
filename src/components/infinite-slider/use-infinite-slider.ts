@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
 export interface InfiniteSliderOptions {
-  amount: number;
   setAmount: (value: number | ((prev: number) => number)) => void;
   accelBase?: number;
   multiplier?: number;
@@ -11,7 +10,6 @@ export interface InfiniteSliderOptions {
 }
 
 export const useInfiniteSlider = ({
-  amount,
   setAmount,
   accelBase = 100000,
   multiplier = 0.0001,

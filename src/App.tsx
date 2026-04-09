@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { InfiniteSlider } from "./components/infinite-slider/infinite-slider";
 
 export default function App() {
@@ -37,8 +37,7 @@ export default function App() {
           </header>
 
           <section className="relative py-6">
-            <InfiniteSlider 
-              amount={amount} 
+            <InfiniteSlider
               setAmount={setAmount}
               accelBase={1000000}
               multiplier={0.0001}

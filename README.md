@@ -40,7 +40,6 @@ function cn(...inputs: ClassValue[]) {
 }
 
 export interface InfiniteSliderOptions {
-  amount: number;
   setAmount: (value: number | ((prev: number) => number)) => void;
   accelBase?: number;
   multiplier?: number;
@@ -55,7 +54,6 @@ export interface InfiniteSliderProps extends InfiniteSliderOptions {
 
 /** The Physics Hook */
 const useInfiniteSlider = ({
-  amount,
   setAmount,
   accelBase = 100000,
   multiplier = 0.0001,
@@ -194,7 +192,6 @@ export default function MyInput() {
       <h1 className="text-2xl font-bold">${amount.toFixed(2)}</h1>
       
       <InfiniteSlider 
-        amount={amount} 
         setAmount={setAmount} 
         className="mt-8"
       />
@@ -222,7 +219,6 @@ Want a simple linear speed instead of an exponential one?
 
 ```tsx
 <InfiniteSlider 
-  amount={amount} 
   setAmount={setAmount}
   calcSpeed={(dist) => dist * 10} // Linear speed based on distance
 />
