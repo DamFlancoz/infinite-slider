@@ -3,7 +3,6 @@ import { useInfiniteSlider, type InfiniteSliderOptions } from "./use-infinite-sl
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-// Standard shadcn helper
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -35,34 +34,41 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
         onPointerUp={handleEnd}
         onPointerCancel={handleEnd}
         className={cn(
-          "relative h-20 w-full touch-none select-none flex items-center justify-center cursor-ew-resize",
+          "relative h-16 w-full touch-none select-none flex items-center justify-center cursor-ew-resize",
+          "bg-slate-100/50 rounded-2xl border border-slate-200/60",
           className
         )}
       >
-        {/* Track */}
-        <div className="absolute w-full h-1 bg-slate-100 rounded-full pointer-events-none">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-transparent to-red-400 opacity-20" />
+        {/* Main Track */}
+        <div className="absolute w-[90%] h-1 bg-slate-300 rounded-full pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-indigo-600/20" />
         </div>
 
-        {/* Midway Marker */}
-        <div className="absolute left-1/2 w-px h-8 bg-slate-200 -translate-x-1/2 pointer-events-none" />
+        {/* Center Zero Point */}
+        <div className="absolute left-1/2 w-0.5 h-6 bg-slate-400 -translate-x-1/2 pointer-events-none" />
 
         {/* Thumb Assembly */}
         <div
           className={cn(
             "absolute flex flex-col items-center pointer-events-none transition-transform",
-            !isDragging && "duration-200 ease-out"
+            !isDragging && "duration-300 ease-out"
           )}
           style={{ 
             left: `${thumbPos * 100}%`,
             transform: 'translateX(-50%)'
           }}
         >
-          <div className="w-px h-10 bg-slate-950 mb-[-12px]" />
+          {/* Shorter, Centered Pin */}
+          <div className={cn(
+            "w-0.5 h-4 mb-[-2px] transition-colors rounded-full",
+            isDragging ? "bg-blue-600" : "bg-slate-800"
+          )} />
+          
+          {/* Smaller Thumb (8x8 or 6x6 equivalent) */}
           <div
             className={cn(
-              "w-10 h-10 rounded-full border-[3px] border-white shadow-lg transition-colors",
-              isDragging ? "bg-blue-600 scale-105" : "bg-slate-950"
+              "w-6 h-6 rounded-full border-[2.5px] border-white shadow-md transition-all",
+              isDragging ? "bg-blue-600 scale-110 shadow-blue-100" : "bg-slate-900 shadow-slate-200"
             )}
           />
         </div>

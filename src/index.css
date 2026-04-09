@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Add this reset to ensure the app fills the screen and looks clean */
+@layer base {
+  body {
+    @apply bg-slate-50 antialiased;
+  }
+}
