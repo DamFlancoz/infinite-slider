@@ -1,5 +1,7 @@
 # Infinite Physics Slider
 
+![Infinite Slider Preview](./assets/InfiniteSlider.png)
+
 Slider for React. Designed for financial apps and complex inputs where you need to move from **$0.01** to **$1,000,000** without lifting your finger.
 
 Unlike standard sliders that have a "start" and "end," this slider functions like a gas pedal. The further you pull it from the center, the faster the value changes.
