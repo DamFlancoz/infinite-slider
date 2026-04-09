@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InfiniteSlider } from "./components/infinite-slider/infinite-slider";
+import { InfiniteSlider } from "./components/ui/infinite-slider";
 
 export default function App() {
   const [amount, setAmount] = useState(0);
