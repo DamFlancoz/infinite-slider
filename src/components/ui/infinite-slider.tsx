@@ -2,7 +2,6 @@ import * as React from "react"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-/** Utility to merge Tailwind classes */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -20,7 +19,6 @@ export interface InfiniteSliderProps extends InfiniteSliderOptions {
   className?: string
 }
 
-/** The Physics Hook */
 const useInfiniteSlider = ({
   setAmount,
   accelBase = 100000,
@@ -74,7 +72,7 @@ const useInfiniteSlider = ({
 
   return { thumbPos, isDragging: isDragging.current, handleStart, handleMove, handleEnd };
 };
-/** The UI Component */
+
 const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
   ({ className, ...props }, ref) => {
     const internalRef = React.useRef<HTMLDivElement>(null);

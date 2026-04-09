@@ -38,7 +38,6 @@ import * as React from "react"
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-/** Utility to merge Tailwind classes */
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
@@ -56,7 +55,6 @@ export interface InfiniteSliderProps extends InfiniteSliderOptions {
   className?: string
 }
 
-/** The Physics Hook */
 const useInfiniteSlider = ({
   setAmount,
   accelBase = 100000,
@@ -93,7 +91,7 @@ const useInfiniteSlider = ({
     const deltaPercent = deltaX / sliderWidth;
     const newThumbPos = Math.max(0, Math.min(1, startThumbPos.current + deltaPercent));
     setThumbPos(newThumbPos);
-    
+
     const dist = newThumbPos - 0.5;
     if (Math.abs(dist) > safeZoneWidth / 2) {
       speedRef.current = calcSpeed ? calcSpeed(dist) : (dist > 0 ? 1 : -1) * Math.pow(accelBase, (Math.abs(dist) - (safeZoneWidth / 2)) / (0.5 - (safeZoneWidth / 2))) * multiplier;
@@ -110,7 +108,7 @@ const useInfiniteSlider = ({
 
   return { thumbPos, isDragging: isDragging.current, handleStart, handleMove, handleEnd };
 };
-/** The UI Component */
+
 const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
   ({ className, ...props }, ref) => {
     const internalRef = React.useRef<HTMLDivElement>(null);
@@ -150,7 +148,7 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
             "absolute flex flex-col items-center pointer-events-none transition-transform",
             !isDragging && "duration-300 ease-out"
           )}
-          style={{ 
+          style={{
             left: `${thumbPos * 100}%`,
             transform: 'translateX(-50%)'
           }}
