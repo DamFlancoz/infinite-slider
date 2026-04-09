@@ -39,15 +39,12 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
           className
         )}
       >
-        {/* Main Track */}
         <div className="absolute w-[90%] h-1 bg-slate-300 rounded-full pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-indigo-600/20" />
         </div>
 
-        {/* Center Zero Point */}
         <div className="absolute left-1/2 w-0.5 h-6 bg-slate-400 -translate-x-1/2 pointer-events-none" />
 
-        {/* Thumb Assembly */}
         <div
           className={cn(
             "absolute flex flex-col items-center pointer-events-none transition-transform",
@@ -58,13 +55,11 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
             transform: 'translateX(-50%)'
           }}
         >
-          {/* Shorter, Centered Pin */}
           <div className={cn(
             "w-0.5 h-4 mb-[-2px] transition-colors rounded-full",
             isDragging ? "bg-blue-600" : "bg-slate-800"
           )} />
-          
-          {/* Smaller Thumb (8x8 or 6x6 equivalent) */}
+
           <div
             className={cn(
               "w-6 h-6 rounded-full border-[2.5px] border-white shadow-md transition-all",

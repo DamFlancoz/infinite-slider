@@ -94,13 +94,7 @@ const useInfiniteSlider = ({
     
     const dist = newThumbPos - 0.5;
     if (Math.abs(dist) > safeZoneWidth / 2) {
-      if (calcSpeed) {
-        speedRef.current = calcSpeed(dist);
-      } else {
-        const dir = dist > 0 ? 1 : -1;
-        const intensity = (Math.abs(dist) - (safeZoneWidth / 2)) / (0.5 - (safeZoneWidth / 2));
-        speedRef.current = dir * Math.pow(accelBase, intensity) * multiplier;
-      }
+      speedRef.current = calcSpeed ? calcSpeed(dist) : (dist > 0 ? 1 : -1) * Math.pow(accelBase, (Math.abs(dist) - (safeZoneWidth / 2)) / (0.5 - (safeZoneWidth / 2))) * multiplier;
     } else {
       speedRef.current = 0;
     }
@@ -114,7 +108,6 @@ const useInfiniteSlider = ({
 
   return { thumbPos, isDragging: isDragging.current, handleStart, handleMove, handleEnd };
 };
-
 /** The UI Component */
 const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
   ({ className, ...props }, ref) => {
@@ -127,8 +120,9 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
     };
 
     const onPointerMove = (e: React.PointerEvent) => {
-      if (internalRef.current) handleMove(e.clientX, internalRef.current.offsetWidth);
-    };
+      const el = internalRef.current || (ref as React.MutableRefObject<HTMLDivElement>)?.current
+      if (el) handleMove(e.clientX, el.offsetWidth)
+    }
 
     return (
       <div
@@ -138,32 +132,46 @@ const InfiniteSlider = React.forwardRef<HTMLDivElement, InfiniteSliderProps>(
         onPointerUp={handleEnd}
         onPointerCancel={handleEnd}
         className={cn(
-          "relative h-24 w-full touch-none select-none flex items-center justify-center cursor-ew-resize",
+          "relative h-16 w-full touch-none select-none flex items-center justify-center cursor-ew-resize",
+          "bg-slate-100/50 rounded-2xl border border-slate-200/60",
           className
         )}
       >
-        <div className="absolute w-full h-1 bg-slate-200/50 rounded-full pointer-events-none" />
-        <div className="absolute left-1/2 w-px h-10 bg-slate-300 -translate-x-1/2 pointer-events-none" />
+        <div className="absolute w-[90%] h-1 bg-slate-300 rounded-full pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-transparent to-indigo-600/20" />
+        </div>
+
+        <div className="absolute left-1/2 w-0.5 h-6 bg-slate-400 -translate-x-1/2 pointer-events-none" />
+
         <div
           className={cn(
-            "absolute flex flex-col items-center pointer-events-none",
-            !isDragging && "transition-all duration-300 ease-out"
+            "absolute flex flex-col items-center pointer-events-none transition-transform",
+            !isDragging && "duration-300 ease-out"
           )}
-          style={{ left: `${thumbPos * 100}%`, transform: 'translateX(-50%)' }}
+          style={{ 
+            left: `${thumbPos * 100}%`,
+            transform: 'translateX(-50%)'
+          }}
         >
-          <div className="w-0.5 h-12 bg-slate-950 mb-[-16px]" />
           <div className={cn(
-            "w-10 h-10 rounded-full border-[3px] border-white shadow-xl transition-all",
-            isDragging ? "bg-blue-600 scale-110 shadow-blue-200" : "bg-slate-950"
+            "w-0.5 h-4 mb-[-2px] transition-colors rounded-full",
+            isDragging ? "bg-blue-600" : "bg-slate-800"
           )} />
+
+          <div
+            className={cn(
+              "w-6 h-6 rounded-full border-[2.5px] border-white shadow-md transition-all",
+              isDragging ? "bg-blue-600 scale-110 shadow-blue-100" : "bg-slate-900 shadow-slate-200"
+            )}
+          />
         </div>
       </div>
-    );
+    )
   }
-);
-InfiniteSlider.displayName = "InfiniteSlider";
+)
+InfiniteSlider.displayName = "InfiniteSlider"
 
-export { InfiniteSlider };
+export { InfiniteSlider }
 ```
 
 \</details\>
