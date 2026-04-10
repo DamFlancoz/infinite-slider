@@ -55,8 +55,8 @@ export default function App() {
 
   // 2. Dynamic Color Feedback Logic
   const getTimeColorClass = (time: number) => {
-    if (time < 5) return "text-emerald-600 bg-emerald-50 border-emerald-100";
-    if (time <= 10) return "text-amber-600 bg-amber-50 border-amber-100";
+    if (time < 10) return "text-emerald-600 bg-emerald-50 border-emerald-100";
+    if (time <= 15) return "text-amber-600 bg-amber-50 border-amber-100";
     return "text-rose-600 bg-rose-50 border-rose-100";
   };
 
@@ -124,7 +124,7 @@ export default function App() {
               <div className="text-center space-y-2">
                 <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.2em]">Active Challenge</p>
                 <p className="text-sm text-slate-600 font-medium">
-                  Reach <span className="text-slate-900 font-bold">{formatCurrency(targetAmount)}</span> in 5s
+                  Reach <span className="text-slate-900 font-bold">{formatCurrency(targetAmount)}</span> in 10s
                 </p>
               </div>
               
