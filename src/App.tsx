@@ -14,7 +14,7 @@ export default function App() {
   // Generates a number between $10 and $1,000,000 with logarithmic probability
   const generateTarget = () => {
     const min = 10;
-    const max = 1000000;
+    const max = 10000;
     const logMin = Math.log(min);
     const logMax = Math.log(max);
     // Use the inverse transform sampling for log distribution
