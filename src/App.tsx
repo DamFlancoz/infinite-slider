@@ -38,6 +38,7 @@ export default function App() {
 
           <section className="relative py-6">
             <InfiniteSlider
+              amount={amount}
               setAmount={setAmount}
               accelBase={1000000}
               multiplier={0.0001}
