@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 import { InfiniteSlider } from "./components/ui/infinite-slider";
 
 export default function App() {
